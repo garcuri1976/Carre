@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Carre5</title>
+    <!--<title>Carre5</title>-->
+    <title>Carrito de Compras</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Bootstrap icons-->
@@ -22,6 +23,21 @@
     <link href="assets/carousel/owl.carousel.min.css" rel="stylesheet">
     <link href="assets/carousel/animate.min.css" rel="stylesheet">
 
+    <!-- jQuery UI 1.11.4 -->
+    <script src="admin/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="admin/plugins/moment/moment.min.js"></script>
+    <script src="admin/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- AdminLTE App -->
+    <script src="admin/dist/js/adminlte.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="admin/dist/js/pages/dashboard.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="admin/js/stripe.js"></script>
+    <script src="admin/js/ecommerce.js"></script>
+
     <!-- scrip-->
     
     <script src="assets/main.js"></script>
@@ -31,35 +47,16 @@
 
 <body>
   <br>  
+    <a href="#" class="btn-flotante" id="btnCarrito">Carrito <span class="badge bg-success" id="carrito">0</span></a>
     
-    <script>
-    // Obtener el enlace por su ID
-    var enlace = document.getElementById("btnCarrito");
 
-    // Inhabilitar el enlace
-    enlace.addEventListener("click", function(event) {
-        event.preventDefault(); // Evitar la acción predeterminada del enlace
-    });
-    </script>
 
     <!-- barra encabezado-->
 
     <div class="container">
          <nav class="navbar navbar-expand-lg navbar-light">
-               <div class="container-fluid">
+            <div class="container-fluid">
                      <a class="navbar-brand" >Carre5 OnLine</a>
- 
-             <!--desplegable-->
-             <!-- <a class="btn d-flex align-items-center justify-content-between bg-primary w-10" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; padding: 100 30px;">
-                    <h6 class="text-dark m-5"><i class="fa fa-bars mr-2"></i>Categorias</h6> <i class="fa fa-angle-down text-dark"></i>
-                </a> 
-                 <nav class="collapse position-absolute navbar navbar-vertical  align-items-start p-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
-            <div class="container-fluid"> 
-                 
-         <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
-                    <div class="navbar-nav w-100">
-                        <div class="nav-item dropdown dropright">-->
-
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -67,9 +64,9 @@
                     <ul class="navbar-nav">
                         <a href="#" class="nav-link text-info" category="all">Todo</a>
                         
-                    <!--levanta info de categoria para armar menu-->    
+                    <!--levanta inregistrcarrfo de categoria para armar menu-->    
                         <?php
-                        $query = mysqli_query($conexion, "SELECT * FROM categorias");
+                        $query = mysqli_query($conexion, "SELECT * FROM categorias where estado = 'activo'");
                         while ($data = mysqli_fetch_assoc($query)) { ?>
                             <a href="#" class="nav-link" category="<?php echo $data['categoria']; ?>"><?php echo $data['categoria']; ?></a>
                         <?php } ?>
@@ -83,11 +80,12 @@
            <div class="col-lg-2 col-6 text-left">
                    <div class="col-lg-1">
                     <a href="registro.php" class="text-decoration-none">
+                    <!--<a href="../admin/procesos/clientes/registrar.php" class="text-decoration-none">-->
                     <span class="h5 text-uppercase text-primary  px-3 ml-n1">Registrate</span>
                   </div>
             </div>  
             <div class="col-lg-1"><a href="login.php" class="text-decoration-none">
-                     <span class="h6 text-uppercase text-dark px-2 ">Accede</span></a>
+            <span class="h5 text-uppercase text-primary  px-3 ml-n1">Accede</span></a>
             </div>
              
 <!-- fin botones de ingreso -->   
@@ -130,7 +128,7 @@
                 <p class="lead fw-normal text-grey-50 mb-0">La manera mas comoda de hacer las compras</p>
                <img src="assets\img\logos\carre5-logo.jpg" alt="carre5">
             </div>
-
+		</div>
 
     </header>
     <section class="py-5">
@@ -138,7 +136,7 @@
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                  <!--levanta info de productos para armar catalogo-->  
                 <?php
-                $query = mysqli_query($conexion, "SELECT p.*, c.id AS id_cat, c.categoria FROM productos p INNER JOIN categorias c ON c.id = p.id_categoria");
+                $query = mysqli_query($conexion, "SELECT p.*, c.id AS id_cat, c.categoria FROM productos p INNER JOIN categorias c ON c.id = p.id_categoria and p.estado='activo'");
                 $result = mysqli_num_rows($query);
                 if ($result > 0) {
                     while ($data = mysqli_fetch_assoc($query)) { ?>
@@ -173,7 +171,7 @@
                                 </div>
                                 <!--cargar producto-->
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto agregar" data-id="<?php echo $data['id_producto']; ?>" href="#">Agregar<i class="fa fa-shopping-cart"></i></a></div>
+                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto agregar" data-id="<?php echo $data['id_producto']; ?>" href="#">Agregar</a></div>
 
                                 </div>
                             </div>

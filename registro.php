@@ -1,129 +1,153 @@
-<?php require_once "config/conexion.php";
-
-if (isset($_POST['submit'])) {
-    require_once "config/conexion.php";
-		$sql = $conn->prepare("INSERT INTO clientes (id_cliente,dni,nombre,apelido,correo,telefono,direccion,localidad,clave) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");  
-		$id_cliente=$_POST['id_cliente'];
-    $dni=$_POST['dni'];
-    $nombre=$_POST['nombre'];
-		$apellidos = $_POST['apellidos'];
-		$correo= $_POST['correo'];
-    $telefono=$_POST['telefono'];
-    $direccion=$_POST['direccion'];
-    $localidad=$_POST['localidad'];
-    $clave=$_POST['clave'];
-		$sql->bind_param("sisssisss", $id_cliente,$dni, $nombre, $apellidos, $correo,$telefono, $direccion,$localidad,$clave); 
-		if($sql->execute()) {
-			$success_message = "Alta Ok";
-		} else {
-			$error_message = "Error al realizar el alta";
-		}
-		// $sql->close();   
-		// $conn->close();
-	} 
- ?>
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Carre5</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <!-- Bootstrap icons-->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" /> -->
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="assets/css/styles.css" rel="stylesheet" />
-    <link href="assets/css/estilos.css" rel="stylesheet" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CARRE5 OnLine</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="admin/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="admin/dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 
-<!--Vincular login-->
-<div class="signup-heading align-items-center"><h2>REGISTRO DE USUARIOS</h2></div>
-					<BR>
-
-<div class="login-signup"><div class="h5  text-primary bg-warning px-20 "><a href="login.php">Entrar</a>
-<div class="login-signup"><a href="index.php"> Volver </a></div></div>
-             			
-		
-</div>
-
-<!-- Fin Vincular login-->
-
-
-<body>
- <!--<div class="h5  text-primary bg-warning px-20"> -->
-          
-            <br>
-<form class="row g-3">
-      <div class="col-md-4">
-        <label for="id_cliente" class="form-label">Nombre de usuario</label>
-        <input type="text" class="form-control" id="id_cliente">
-      </div>
-      <div class="col-md-2">
-        <label for="dni" class="form-label">DNI</label>
-        <input type="number" class="form-control" id="dni">
-      </div>
-      <div class="col-md-2">
-        <label for="nombre" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="nombre">
-      </div>
-      <div class="col-md-2">
-        <label for="apellido" class="form-label">Apellido</label>
-        <input type="text" class="form-control" id="apellido">
-      </div>
-    
-      <div class="col-md-6">
-        <label for="correo" class="form-label">Mail</label>
-        <input type="correo" class="form-control" id="correo">
-      </div>
-      <div class="col-md-5">
-        <label for="telefono" class="form-label">Telefono</label>
-        <input type="text" class="form-control" id="telefono">
-      </div>
-      <div class="col-md-10">
-        <label for="direccion" class="form-label">Direccion</label>
-        <input type="text" class="form-control" id="direccion" placeholder="Colon 120">
-      </div>
-      <div class="col-md-3">
-        <label for="localidad" class="form-label">Localidad</label>
-        <br>
-        <select id="localidad" class="form-select col-md-8">
-          <option selected>Elija...</option>
-          <option value="Flores">Flores</option>
-          <option value="Almagro">Almagro</option>
-          <option value="Boedo">Boedo</option>
-        </select>
-      </div>
-      <div class="col-md-4">
-        <label for="clave" class="form-label">Clave</label>
-        <input type="clave" class="form-control" id="clave">
-      </div>
-      
-  <div class="login-signup">
-  <div class="h5  text-primary bg-warning px-20 ">
-      <div class="col-md-12">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="terminos">
-          <label class="form-check-label" for="terminos">
-            Acepta los términos y condiciones
-          </label>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <b>CARRE5</b>OnLine
         </div>
-      </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Registrate</p>
+                <?php
+                if (isset($_REQUEST['registro'])) {
+                    session_start();
+                    $nombre = $_REQUEST['nombre'] ?? '';
+                    $apellido = $_REQUEST['apellido'] ?? '';
+                    $email = $_REQUEST['email'] ?? '';
+                    $telefono = $_REQUEST['telefono'] ?? '';
+                    $direccion = $_REQUEST['direccion'] ?? '';
+                    $localidad = $_REQUEST['localidad'] ?? '';
+                    $pasword = $_REQUEST['pass'] ?? '';
+                    
+                    
+                    $pasword = md5($pasword);
+                    include_once "config/conexion.php";
+                    //$con = mysqli_connect($host, $user, $pass, $db);
+                    $query = "INSERT into clientes (nombre,apellido,correo,telefono,direccion,localidad,clave,estado) values ('$nombre','$apellido','$email','$telefono','$direccion','$localidad','$pasword','1')";
+                    $res = mysqli_query($conexion, $query);
+                    if ($res) {
+                    ?>
+                        <div class="alert alert-primary" role="alert">
+                            <strong>Registro exitosos</strong> <a href="login.php">Ir a login</a>
+                        </div>
+                        
+                    <?php
+                    } else {
+                    ?>
+                        <div class="alert alert-danger" role="alert">
+                            Error de registro
+                        </div>
+                <?php
+                    }
+                }
+                ?>
+                <form method="post">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Nombre" name="nombre">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
 
-      <div class="row">
-        <input class="btn" type="submit" name="signup-btn"
-          id="signup-btn" value="REGISTRAR">
-      </div> 
-     <!--  <div class="col-md-12">
-        <button TYPE="SUBMIT" class="btn btn-primary">Confirmar</button>
-      </div>-->
-					</div>
-				</form>
-			</div>
-</div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Apellido" name="apellido">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Email" name="email">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Telefono" name="telefono">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-phone"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Direccion" name="direccion">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Localidad" name="localidad">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" placeholder="Password" name="pass">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- /.col -->
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary" name="registro">Registrarse</button>
+                            <a href="login.php" class="text-success float-right">Ir a login</a>
+                        </div>
+                        <div class="col-12">
+                    
+                        <a href="index.php" class="text-success float-right" >Volver</a>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+
+                <!-- /.login-card-body -->
+            </div>
+        </div>
+        <!-- /.login-box -->
+
+        <!-- jQuery -->
+        <script src="admin/plugins/jquery/jquery.min.js"></script>
+        <!-- Bootstrap 4 -->
+        <script src="admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="admin/dist/js/adminlte.min.js"></script>
+
+</body>
+
+</html>

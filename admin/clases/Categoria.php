@@ -30,7 +30,7 @@ class Categoria{
     {
             $c = new Conexion();
 			$conexion = $c->conectar();
-			$sql = "select * from categorias where estado = 'activo'";
+			$sql = "select * from categorias";
 			$result = mysqli_query($conexion,$sql);
             return $result; 
     }
@@ -48,7 +48,7 @@ class Categoria{
     {
             $c = new Conexion();
 			$conexion = $c->conectar();
-			$sql = "select * from categorias";
+			$sql = "select * from categorias where estado = 'activo'";
 			$result = mysqli_query($conexion,$sql);
             return $result;         
     }

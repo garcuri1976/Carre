@@ -76,7 +76,7 @@ class Producto{
     {
             $c = new Conexion();
 			$conexion = $c->conectar();
-			$sql = "select precio_normal,stock from productos where id_producto=$id";
+			$sql = "select precio_normal,stock from productos where estado = 'inactivo'";
 			$result = mysqli_query($conexion,$sql);
             $ver = mysqli_fetch_row($result);
             $datos = array(

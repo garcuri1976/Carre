@@ -6,7 +6,7 @@ class Usuario{
 			$conexion = $c->conectar();
 			$nombre = $c->test_input($datos[0]);  
             $apellido = $c->test_input($datos[1]);
-            $clave = $c->test_input($datos[2]);
+            $clave = $c->test_input(md5($datos[2]));
             $tipo = $c->test_input($datos[3]);
             $estado = $c->test_input($datos[4]);
             $correo = $c->test_input($datos[5]);
