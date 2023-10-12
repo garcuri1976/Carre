@@ -80,16 +80,22 @@
         <!-- </nav>   fin despleglabe -->
 
 <!-- inicio botones de ingreso -->  
+        <?php if (!$user) : ?>
            <div class="col-lg-2 col-6 text-left">
-                   <div class="col-lg-1">
+                <div class="col-lg-1">
                     <a href="registro.php" class="text-decoration-none">
                     <!--<a href="../admin/procesos/clientes/registrar.php" class="text-decoration-none">-->
                     <span class="h5 text-uppercase text-primary  px-3 ml-n1">Registrate</span>
-                  </div>
+                </div>
             </div>  
             <div class="col-lg-1"><a href="login.php" class="text-decoration-none">
-            <span class="h5 text-uppercase text-primary  px-3 ml-n1">Accede</span></a>
+                <span class="h5 text-uppercase text-primary  px-3 ml-n1">Accede</span></a>
             </div>
+        <?php else : ?>
+            <div class="col-lg-1"><a href="salir.php" class="text-decoration-none">
+                <span class="h5 text-uppercase text-primary  px-3 ml-n1">Salir</span></a>
+            </div>
+        <?php endif ?>
              
 <!-- fin botones de ingreso -->   
              
