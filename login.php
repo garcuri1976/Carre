@@ -22,16 +22,11 @@
 
 
 <body class="hold-transition  login-page">
-<!--<body class="hold-transition login-page"> 
-<body background="images/carre5_.gif">-->
-
-
 
     <div class="login-box">
-    <div class="login-logo">
-    
-      
-    </div>
+        <div class="login-logo">
+            <b>CARRE5</b>OnLine
+        </div>
     <!-- /.login-logo -->
   
     <div class="card">
