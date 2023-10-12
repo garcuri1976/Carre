@@ -1,4 +1,5 @@
 <?php require_once "config/conexion.php"; ?>
+<?php require_once "config/functions.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,8 +47,10 @@
 </head>
 
 <body>
-  <br>  
-    <a href="#" class="btn-flotante" id="btnCarrito">Carrito <span class="badge bg-success" id="carrito">0</span></a>
+  <br>
+    <?php if ($user = is_user_logged_in()) : ?>
+        <a href="#" class="btn-flotante" id="btnCarrito">Carrito <span class="badge bg-success" id="carrito">0</span></a>
+    <?php endif ?>
     
 
 
