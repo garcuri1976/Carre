@@ -51,12 +51,10 @@
           $res = mysqli_query($conexion, $query);
           $row = mysqli_fetch_assoc($res);
           if ($row) {
-            $_SESSION['id_cliente'] = $row['id_cliente'];
-            $_SESSION['correo'] = $row['correo'];
-            $_SESSION['nombre'] = $row['nombre'];
-            $_SESSION['clave'] = $row['clave'];
-
-
+            $_SESSION['usuario']['id_cliente'] = $row['id_cliente'];
+            $_SESSION['usuario']['correo'] = $row['correo'];
+            $_SESSION['usuario']['nombre'] = $row['nombre'];
+            
             header("location: index.php?mensaje=Usuario registrado exitosamente");
           } else {
         ?>
