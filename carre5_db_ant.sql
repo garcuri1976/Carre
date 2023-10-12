@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-10-2023 a las 04:47:42
+-- Tiempo de generación: 27-09-2023 a las 16:41:59
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -40,12 +40,11 @@ CREATE TABLE `categorias` (
 INSERT INTO `categorias` (`id`, `categoria`, `estado`) VALUES
 (1, 'Almacen\r\n', 'activo'),
 (7, 'Congelado\r\n', 'activo'),
-(8, 'Limpieza\r\n', 'inactivo'),
+(8, 'Limpieza\r\n', 'activo'),
 (16, 'Bebidas', 'activo'),
 (18, 'Deporte', 'inactivo'),
 (21, 'Bazar', 'activo'),
-(23, 'Enlatado', 'inactivo'),
-(24, 'Ferreteria', 'activo');
+(23, 'Enlatado', 'inactivo');
 
 -- --------------------------------------------------------
 
@@ -57,11 +56,10 @@ CREATE TABLE `clientes` (
   `id_cliente` int(11) NOT NULL,
   `nombre` varchar(255) DEFAULT NULL,
   `apellido` varchar(255) DEFAULT NULL,
-  `correo` varchar(255) NOT NULL,
+  `correo` varchar(255) DEFAULT NULL,
   `telefono` varchar(20) DEFAULT NULL,
   `direccion` varchar(255) DEFAULT NULL,
   `localidad` varchar(255) DEFAULT NULL,
-  `estado` varchar(1) DEFAULT NULL,
   `clave` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -69,17 +67,11 @@ CREATE TABLE `clientes` (
 -- Volcado de datos para la tabla `clientes`
 --
 
-INSERT INTO `clientes` (`id_cliente`, `nombre`, `apellido`, `correo`, `telefono`, `direccion`, `localidad`, `estado`, `clave`) VALUES
-(3, 'Agustin', 'Zarza', 'zarza_agu@gamil.com', '1163333333', 'Rucci 3125', 'Victoria', '1', 'b7bc2a2f5bb6d521e64c8974c143e9a0'),
-(4, 'Aldo', 'Grimaldi', 'tano22@gmail.com', '1165555555', 'Rucci 2722', 'Victoria', '1', 'd41d8cd98f00b204e9800998ecf8427e'),
-(5, 'Mariano ', 'Arcuri', 'locoarcuri@gmail.com', '156777777', 'Rucci 2662', 'Victoria', '1', '22a4d9b04fe95c9893b41e2fde83a427'),
-(7, 'Camila', 'Gioffre', 'camila@yahoo.com', '43384000', 'Carlos Casares 6262', 'Victoria', '1', 'a589a3a99e9adcfcb3772deaecdd60d9'),
-(8, 'Pepe', 'Argento', '43384000', 'Roca 721', 'San Fernando', '1', '2', ''),
-(9, 'Pepe', 'Argento', 'ppargento@gmail.com', '43384000', 'Roca 721', 'San Fernando', '2', '12345'),
-(10, 'Pepe', 'Argento', 'ppargento@gmail.com', '43384000', 'Roca 721', 'San Fernando', '1', '827ccb0eea8a706c4c34a16891f84e7b'),
-(11, 'Eduardo', 'Villar', 'coco@gmail.com', '11680808080', 'Constitucion 3658', 'San Fernando', '1', '827ccb0eea8a706c4c34a16891f84e7b'),
-(12, 'ccc', 'ccc', 'ccc@ccc.ccc', '111111', 'cccc 111', 'Victoria', '1', 'e10adc3949ba59abbe56e057f20f883e'),
-(13, 'Carlos', 'Correia', 'yerry@gmail.com', '11678945612', 'Lugones 2710', 'Virreyes', '1', '25f9e794323b453885f5181f1b624d0b');
+INSERT INTO `clientes` (`id_cliente`, `nombre`, `apellido`, `correo`, `telefono`, `direccion`, `localidad`, `clave`) VALUES
+(3, 'Agustin', 'Zarza', 'zarza_agu@gamil.com', '1163333333', 'Rucci 3125', 'Victoria', 'b7bc2a2f5bb6d521e64c8974c143e9a0'),
+(4, 'Aldo', 'Grimaldi', 'tano22@gmail.com', '1165555555', 'Rucci 2722', 'Victoria', 'd41d8cd98f00b204e9800998ecf8427e'),
+(5, 'Mariano ', 'Arcuri', 'locoarcuri@gmail.com', '156777777', 'Rucci 2662', 'Victoria', '22a4d9b04fe95c9893b41e2fde83a427'),
+(7, 'Camila', 'Gioffre', 'camila@yahoo.com', '1199999999', 'Carlos Casares 6262', 'Victoria', 'd3eb9a9233e52948740d7eb8c3062d14');
 
 -- --------------------------------------------------------
 
@@ -156,7 +148,7 @@ CREATE TABLE `productos` (
   `nombre` varchar(255) NOT NULL,
   `descripcion` text DEFAULT NULL,
   `precio_normal` decimal(10,2) DEFAULT NULL,
-  `precio_rebajado` float(10,2) NOT NULL,
+  `precio_rebajado` decimal(10,2) NOT NULL,
   `stock` int(11) DEFAULT NULL,
   `imagen` varchar(50) NOT NULL,
   `id_categoria` int(11) DEFAULT NULL,
@@ -168,12 +160,9 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id_producto`, `nombre`, `descripcion`, `precio_normal`, `precio_rebajado`, `stock`, `imagen`, `id_categoria`, `estado`) VALUES
-(1, 'Aceite de Girasol', 'Aceite de Girasol Natura 1,5Lts.', 496.20, 494.20, 300, '1.webp', 1, 'activo'),
+(1, 'Aceite de Girasol', 'Aceite de Girasol Natura 1,5Lts.\r\n', 496.20, 496.20, 100, '1.webp', 1, 'activo'),
 (2, 'Cerveza', 'Cerveza Quilmes Doble Malta lata 410 Ml.', 160.20, 160.20, 5, '11.webp', 16, 'activo'),
-(3, 'Hamburguesa', 'Hamburguesa Good 320 Gr.', 644.70, 644.70, 3, '21.webp', 7, 'activo'),
-(4, 'Pure de Tomate', 'Pure de Tomate Arcor 530 Gr.', 285.50, 260.00, 100, '4.webp', 1, 'activo'),
-(5, 'Sal Fina', 'Sal Fina en Paquete Celusal  500gr', 250.00, 250.00, 50, '5.webp', 1, 'activo'),
-(6, 'Vinagre de Alcohol', 'Vinagre de Alcohol Menoyo 1 L.', 256.33, 249.99, 200, '6.webp', 1, 'inactivo');
+(3, 'Hamburguesa', 'Hamburguesa Good 320 Gr.', 644.70, 644.70, 120, '21.webp', 7, 'activo');
 
 -- --------------------------------------------------------
 
@@ -198,13 +187,10 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellido`, `clave`, `tipo`, `estado`, `correo`) VALUES
 (3, 'Gabriel', 'Notirne', 'eb89f40da6a539dd1b1776e522459763', 'admin', '1', 'gabriel@gmail.com'),
 (4, 'Ariel', 'Arcuri', '827ccb0eea8a706c4c34a16891f84e7b', 'admin', '1', 'garcuri76@gmail.com'),
-(6, 'Maximo', 'Arcuri', '907fc10f1338514846ef98a4e284c8e8', 'admin', '1', 'maximo@gmail.com'),
-(8, 'Sabrina', 'Giofrre', '827ccb0eea8a706c4c34a16891f84e7b', 'Admin', '1', 'sgioffre@gmail.com'),
-(9, 'Martina Angeles', 'Arcuri', '827ccb0eea8a706c4c34a16891f84e7b', 'admin', '1', 'martina@gmail.com'),
-(10, 'Antonella', 'Arcuri', '12345', 'admin', '2', 'anto_nella@gmail.com'),
-(11, 'gerardo', 'giampietro', 'e10adc3949ba59abbe56e057f20f883e', 'admin', '1', 'gg@ssn.gob.ar'),
-(12, 'aa', 'aa', '123456789', 'admin', '2', 'aa@aa.aaa'),
-(13, 'bb', 'bb', '827ccb0eea8a706c4c34a16891f84e7b', 'admin', '2', 'bb@bb.bbb');
+(6, 'Maximo', 'Arcuri', '827ccb0eea8a706c4c34a16891f84e7b', 'admin', '1', 'maximo@gmail.com'),
+(8, 'Sabrina', 'Giofrre', '12345', 'Admin', '1', 'sgioffre@gmail.com'),
+(9, 'Martina', 'Arcuri', '12345', 'admin', '1', 'martina@gmail.com'),
+(10, 'Antonella', 'Arcuri', '12345', 'admin', '1', 'anto_nella@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -288,13 +274,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidos`
@@ -312,13 +298,13 @@ ALTER TABLE `pedido_detalle`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas
