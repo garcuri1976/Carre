@@ -101,7 +101,7 @@
                         <input type="text" class="form-control" placeholder="Direccion" name="direccion">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-user"></span>
+                                <span class="fas fa-home"></span>
                             </div>
                         </div>
                     </div>
@@ -109,7 +109,7 @@
                         <input type="text" class="form-control" placeholder="Localidad" name="localidad">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-user"></span>
+                                <span class="fa fa-map-marker-alt"></span>
                             </div>
                         </div>
                     </div>
