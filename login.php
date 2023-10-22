@@ -49,6 +49,7 @@
             $_SESSION['usuario']['id_cliente'] = $row['id_cliente'];
             $_SESSION['usuario']['correo'] = $row['correo'];
             $_SESSION['usuario']['nombre'] = $row['nombre'];
+            $_SESSION['carrito']['items'] = []; // Inicializa carrito
             
             header("location: index.php?mensaje=Usuario registrado exitosamente");
           } else {

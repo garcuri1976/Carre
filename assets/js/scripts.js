@@ -3,7 +3,7 @@ $(document).ready(function () {
     let items = {
         id: 0
     }
-    mostrar();
+
     $('.navbar-nav .nav-link[category="all"]').addClass('active');
 
     $('.nav-link').click(function () {
@@ -34,16 +34,32 @@ $(document).ready(function () {
         setTimeout(mostrarTodo, 400);
     });
 
-    $('.agregar').click( function(e){
+    $('.agregar').on('change', function(e){
         e.preventDefault();
         const id = $(this).data('id');
-        items = {
-            id: id
+        item = {
+            id: id,
+            cantidad: this.value
         }
-        productos.push(items);
-        localStorage.setItem('productos', JSON.stringify(productos));
-        mostrar();
+
+        $.ajax({
+            url: 'actualizar_carrito.php',
+            type: 'POST',
+            async: true,
+            data: {
+                action: 'actualizar',
+                item: item
+            },
+            success: function(response) {
+                const res = JSON.parse(response);
+                actualizarCarrito(res);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
     })
+
     $('#btnCarrito').click(function(e){
         $('#btnCarrito').attr('href','carrito.php');
     })
@@ -68,13 +84,9 @@ $(document).ready(function () {
     })
 });
 
-function mostrar(){
-    if (localStorage.getItem("productos") != null) {
-        let array = JSON.parse(localStorage.getItem('productos'));
-        if (array) {
-            $('#carrito').text(array.length);
-        }
-    }
+function actualizarCarrito(carrito){
+    cantidad = carrito ? Object.keys(carrito.items).length : 0;
+    $('#carrito').text(cantidad);
 }
 
 

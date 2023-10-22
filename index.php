@@ -49,7 +49,8 @@
 <body>
   <br>
     <?php if ($user = is_user_logged_in()) : ?>
-        <a href="#" class="btn-flotante" id="btnCarrito">Carrito <span class="badge bg-success" id="carrito">0</span></a>
+        <?php $carrito = $_SESSION['carrito'] ?>
+        <a href="#" class="btn-flotante" id="btnCarrito">Carrito <span class="badge bg-success" id="carrito"><?php echo count($carrito['items']) ?></span></a>
     <?php endif ?>
     
 
@@ -180,8 +181,10 @@
                                 </div>
                                 <!--cargar producto-->
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto agregar" data-id="<?php echo $data['id_producto']; ?>" href="#">Agregar</a></div>
-
+                                    <?php if ($carrito) : ?>
+                                        <?php $cantidad = key_exists($data['id_producto'], $carrito['items']) ? $carrito['items'][$data['id_producto']]['cantidad'] : 0 ?>
+                                        <input type="number" class="btn btn-outline-dark mt-auto agregar" data-id="<?php echo $data['id_producto']; ?>" value="<?php echo $cantidad?>">
+                                    <?php endif ?>
                                 </div>
                             </div>
                         </div>
