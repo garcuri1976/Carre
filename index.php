@@ -12,13 +12,17 @@
     <title>carre5</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <!-- Bootstrap icons-->
-  
+    <!-- Bootstrap icons-->  
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" /> 
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="assets/css/styles.css" rel="stylesheet" />
     <link href="assets/css/estilos.css" rel="stylesheet" />
-    
+    <!--Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!--Core theme JS-->
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/scripts.js"></script>
+
     <!-- carousel
     <link href="assets/carousel/style.css" rel="stylesheet">-->
     <link href="assets/carousel/owl.carousel.min.css" rel="stylesheet">
@@ -31,18 +35,11 @@
     <!-- daterangepicker -->
     <script src="admin/plugins/moment/moment.min.js"></script>
     <script src="admin/plugins/daterangepicker/daterangepicker.js"></script>
-    <!-- AdminLTE App -->
-    <script src="admin/dist/js/adminlte.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="admin/dist/js/pages/dashboard.js"></script>
-    <script src="https://js.stripe.com/v3/"></script>
-    <script src="admin/js/stripe.js"></script>
-    <script src="admin/js/ecommerce.js"></script>
+    
 
     <!-- scrip-->
-    
-    <script src="assets/main.js"></script>
     <script src="assets/carousel/owl.carousel.min.js"></script>
+    <script src="assets/main.js"></script>
    
 </head>
 
@@ -320,13 +317,7 @@
     </div>    
     </footer>
     
-    <!--Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!--Core theme JS-->
-    <script src="assets/js/jquery-3.6.0.min.js"></script>
-    <script src="assets/js/scripts.js"></script>
 
-<!-- --------------------------- -->
 
  <div class="container">
             <h5 class="text-secondary text-uppercase mb-4">Newsletter</h5>
@@ -360,7 +351,7 @@
                 </p>
             </div>
             <div class="col-md-6 px-xl-0 text-center text-md-right">
-                <img class="img-fluid" src="img/payments.png" alt="">
+                <!-- <img class="img-fluid" src="img/payments.png" alt="">-->
             </div>
         </div>
     </div>
