@@ -178,7 +178,7 @@
                                 </div>
                                 <!--cargar producto-->
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <?php if ($carrito) : ?>
+                                    <?php if (isset($carrito)) : ?>
                                         <?php $cantidad = key_exists($data['id_producto'], $carrito['items']) ? $carrito['items'][$data['id_producto']]['cantidad'] : 0 ?>
                                         <input type="number" class="btn btn-outline-dark mt-auto agregar" min="0" data-id="<?php echo $data['id_producto']; ?>" value="<?php echo $cantidad?>">
                                     <?php endif ?>
