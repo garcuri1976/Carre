@@ -19,8 +19,6 @@
   <!-- Google Font: Source Sans Pro
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">-->
 </head>
-
-
 <body class="hold-transition  login-page">
 
     <div class="login-box">
@@ -52,11 +50,12 @@
             $_SESSION['carrito']['items'] = []; // Inicializa carrito
             
             header("location: index.php?mensaje=Usuario registrado exitosamente");
+            
           } else {
         ?>
-            <div class="alert alert-danger" role="alert">
-              Error de login <img src="admin/images/haha.jpg" width="200">
-            </div>
+          <div class="alert alert-danger" role="alert">
+            Error de login <img src="admin/images/haha.jpg" width="200">
+          </div>
         <?php
           }
         }

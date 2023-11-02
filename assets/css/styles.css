@@ -10,6 +10,9 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
+
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -4543,7 +4546,7 @@ textarea.form-control-lg {
 
 .card-body {
   flex: 1 1 auto;
-  padding: 1rem 1rem;
+  padding: 0.25rem 0.25rem;
 }
 
 .card-title {
@@ -6953,6 +6956,7 @@ textarea.form-control-lg {
   width: 75% !important;
 }
 
+
 .w-100 {
   width: 100% !important;
 }
@@ -6974,7 +6978,11 @@ textarea.form-control-lg {
 }
 
 .h-25 {
-  height: 25% !important;
+  height: 70% !important;
+}
+
+.h-90 {
+  height: 90% !important;
 }
 
 .h-50 {
@@ -7420,7 +7428,7 @@ textarea.form-control-lg {
 }
 
 .p-2 {
-  padding: 0.5rem !important;
+  padding: 1.5rem !important;
 }
 
 .p-3 {
@@ -7721,7 +7729,7 @@ textarea.form-control-lg {
 
 .text-secondary {
   --bs-text-opacity: 1;
-  color: rgba(var(--bs-secondary-rgb), var(--bs-text-opacity)) !important;
+  color: rgba(var(--bs-black-rgb), var(--bs-text-opacity)) !important;
 }
 
 .text-success {
