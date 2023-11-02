@@ -29,8 +29,6 @@
 
     <!-- jQuery UI 1.11.4 -->
     <script src="admin/plugins/jquery-ui/jquery-ui.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- daterangepicker -->
     <script src="admin/plugins/moment/moment.min.js"></script>
     <script src="admin/plugins/daterangepicker/daterangepicker.js"></script>
@@ -382,9 +380,6 @@ Featured -->
 </footer>
     
     <!--Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> <!--Core theme JS-->
-    <script src="assets/js/jquery-3.6.0.min.js"></script>
-    <script src="assets/js/scripts.js"></script>
     <script>
         $(document).ready(function() {
             localStorage.removeItem("productos");
