@@ -86,7 +86,7 @@ if ($user = is_user_logged_in()) {
                         <h4>Total a Pagar: <?php echo $total_pagar; ?> </h4>
                         <div class="d-grid gap-2">
                             <div id="paypal-button-container"></div>
-                            <button class="btn btn-warning" type="button" id="btnpedido">Soliictar Pedido</button>
+                            <button class="btn btn-warning" type="button" id="btnpedido">Solicitar Pedido</button>
                         </div>
                     </div>
                 </div>
