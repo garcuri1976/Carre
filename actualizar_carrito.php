@@ -31,6 +31,7 @@ if ($_POST['action'] == 'actualizar') {
         if ($row) {
             $carrito['items'][$item['id']]['precio'] = $row['precio_rebajado'];
             $carrito['items'][$item['id']]['cantidad'] = $item['cantidad'];
+            $carrito['items'][$item['id']]['nombre'] = $row['descripcion'];
             $carrito['items'][$item['id']]['subtotal'] = $item['cantidad'] * $row['precio_rebajado'];
         }
     }

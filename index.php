@@ -37,7 +37,48 @@
     <!-- scrip-->
     <script src="assets/carousel/owl.carousel.min.js"></script>
     <script src="assets/main.js"></script>
-   
+
+    
+        <!-- scrip-->
+    
+    <script src="assets/main.js"></script>
+    <script src="assets/carousel/owl.carousel.min.js"></script>
+
+    <style>
+        /* Estilos para el encabezado */
+        .header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Estilos para las filas */
+        .full-width {
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .two-columns {
+            display: flex;
+        }
+
+        .column-20 {
+            flex: 20%;
+            background-color: #ffcc50;
+            padding: 20px;
+        }
+
+        .column-80 {
+            flex: 80%;
+            /*background-color: #ffcc50;*/
+            padding: 20px;
+        }
+    </style>
+
+
+
 </head>
 <body>
   <br>
@@ -112,14 +153,36 @@
         <!-- </nav>   fin despleglabe -->
 </div>
 
-    
-    <!--cabecera-->
-    
-    <section class="py-5">
-        <div class="container px-4 px-lg-5">
+
+
+
+
+<div class="two-columns">
+
+        <div class="column-20">
+
+            <!--<h2>20%</h2>-->
+            <div class="btn-group-vertical text-center d-flex align-items-center justify-content-center" role="group" aria-label="Vertical button group">
+            <button type="button" class="btn btn-primary" onclick="window.open('ccomprar.php', '_blank', 'width=600,height=400,scrollbars=yes')">Como Comprar?</button>
+ 
+            <button type="button" class="btn btn-primary" onclick="window.open('sucursales.php', '_blank', 'width=600,height=400,scrollbars=yes')">Sucursales</button>
+  
+            <button type="button" class="btn btn-primary" onclick="window.open('catalogo.php', '_blank', 'width=600,height=400,scrollbars=yes')">Catalogo</button>
+  
+   <button type="button" class="btn btn-primary" onclick="window.open('https://www.argentina.gob.ar/economia/comercio/preciosjustos', '_blank', 'width=600,height=400,scrollbars=yes')">Presios Justos</button>
+  
+   <button type="button" class="btn btn-primary" onclick="window.open('https://www.argentina.gob.ar/justicia/derechofacil/leysimple/ley-de-gondolas', '_blank', 'width=600,height=400,scrollbars=yes')">LEY de Gondolas</button>
+  
+</div>
+</div>
+
+
+        <div class="column-80">
+            <!--<h2>80%</h2>-->
+            <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-2 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                  <!--levanta info de productos para armar catalogo-->  
-                <?php
+                 <?php
                 $query = mysqli_query($conexion, "SELECT p.*, c.id AS id_cat, c.categoria FROM productos p INNER JOIN categorias c ON c.id = p.id_categoria and p.estado='activo'");
                 $result = mysqli_num_rows($query);
                 if ($result > 0) {
@@ -154,11 +217,12 @@
                                     </div>
                                 </div>
                                 <!--cargar producto-->
-                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <?php if (isset($carrito)) : ?>
-                                        <?php $cantidad = key_exists($data['id_producto'], $carrito['items']) ? $carrito['items'][$data['id_producto']]['cantidad'] : 0 ?>
-                                        <input type="number" class="btn btn-outline-dark mt-auto agregar" min="0" data-id="<?php echo $data['id_producto']; ?>" value="<?php echo $cantidad?>">
-                                    <?php endif ?>
+                                <div class="card-footer p-5 pt-0 border-top-0 bg-transparent">
+                                <?php if (isset($carrito)) : ?>
+                    <?php $cantidad = key_exists($data['id_producto'], $carrito['items']) ? $carrito['items'][$data['id_producto']]['cantidad'] : 0 ?>
+                    <input type="number" class="btn btn-outline-dark mt-auto agregar" min="0" max="<?php echo $data['stock']; ?>" data-id="<?php echo $data['id_producto']; ?>" value="<?php echo $cantidad ?>">
+                    <?php endif ?>
+
                                 </div>
                             </div>
                         </div>
@@ -167,7 +231,19 @@
 
             </div>
         </div>
-    </section>
+        </div>
+    </div>
+
+
+
+
+
+  
+
+
+
+
+    
 
 
 <!-- barra encabezado-->
@@ -293,20 +369,7 @@ Featured -->
     <div class="container" >
 
     
-    <div class="container">
-
-            <p class="m-0 text-center text-white"></p>
-            <div class="col-4 col-lg-4 mb-3 text-white">
-                <h4>CONTACTO</h4>
-                    <ul class="list-unstyled">
-                    <li class="mb-2"> <li class="mb-2"><i class="fa fa-phone-alt text-primary mr-3"><a></i>Teléfono: (54 11) 5444-8585</a></li>
-                    <i class="fa fa-map-marker-alt text-primary mr-3"></i>BELGRANO 637, CABA, ARGENTINA A</p>
-                        <li class="mb-2"><a><i class="fa fa-envelope text-primary mr-3"></i>Email: info@carre5.com.ar</a></li>
-                        <li class="mb-2"><a>Supermercado Carre5 OnLine</a></li>
-                    <a>CUIT: 30-66666666-9</a></li>
-                    </ul>
-            </div>
-    </div>    
+      
     </footer>
     
 
