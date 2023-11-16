@@ -1,5 +1,6 @@
 <?php 
 
+
 function is_user_logged_in() 
 {	
     session_start();
@@ -19,3 +20,4 @@ function calcularTotalCarrito($carrito)
 
     return $total;
 }
+?>
