@@ -10,8 +10,8 @@ if (isset($_POST)) {
             $result = mysqli_fetch_assoc($query);
             $data['id'] = $result['id_producto'];
             $data['precio'] = $result['precio_rebajado'];
-            //$data['nombre'] = $result['nombre'];
-            $data['nombre'] = $result['descripcion'];
+            // $data['nombre'] = $result['nombre'];
+            $data['descripcion'] = $result['descripcion'];
             $total = $total + $result['precio_rebajado'];
             
             array_push($array['datos'], $data);
