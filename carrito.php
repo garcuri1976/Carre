@@ -55,9 +55,9 @@ if ($user = is_user_logged_in()) {
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Producto</th>
-                        <th scope="col">Precio Unitario</th>
-                        <th scope="col">Cantidad</th>
-                        <th scope="col">Subtotal</th>
+                        <th scope="col" class="text-end">Precio Unitario</th>
+                        <th scope="col" class="text-end">Cantidad</th>
+                        <th scope="col" class="text-end">Subtotal</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -70,9 +70,9 @@ if ($user = is_user_logged_in()) {
                         <tr>
                             <th scope="row"><?php echo $id_producto; ?></th>
                             <td><?php echo $producto['nombre']; ?></td>
-                            <td><?php echo $producto['precio']; ?></td>
-                            <td><?php echo $producto['cantidad']; ?></td>
-                            <td><?php echo $subtotal; ?></td>
+                            <td class="text-end"><?php echo $producto['precio']; ?></td>
+                            <td class="text-end"><?php echo $producto['cantidad']; ?></td>
+                            <td class="text-end"><?php echo $subtotal; ?></td>
                         </tr>
                     <?php endforeach; ?>
                     <tr>
@@ -83,7 +83,7 @@ if ($user = is_user_logged_in()) {
             </table>
 
             <div class="col-md-5 ms-auto">
-                        <h4>Total a Pagar: <?php echo $total_pagar; ?> </h4>
+                        <h4 class="text-end">Total a Pagar: $ <?php echo $total_pagar; ?> </h4>
                         <div class="d-grid gap-2">
                             <div id="paypal-button-container"></div>
                             <button class="btn btn-warning" type="button" id="btnpedido">Solicitar Pedido</button>
