@@ -115,6 +115,9 @@ $(document).ready(function() {
             success: function(response) {
                 console.log(response);
                 if (response.success) {
+                    // Vacía el carrito
+                    vaciarCarrito();
+                    
                     alert("Pedido generado con éxito: " + response.message);
                     // Puedes redirigir a otra página si lo deseas
                     window.location.href = "index.php";
@@ -128,5 +131,23 @@ $(document).ready(function() {
         });
     });
 });
+
+function vaciarCarrito() {
+    $.ajax({
+        url: 'actualizar_carrito.php',
+        type: 'POST',
+        async: true,
+        data: {
+            action: 'vaciar',
+        },
+        success: function(response) {
+            return true;
+        },
+        error: function(error) {
+            console.log(error);
+            return false;
+        }
+    });
+}
 </script>
 </html>
