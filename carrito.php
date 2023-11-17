@@ -3,9 +3,6 @@ require_once "config/conexion.php";
 require_once "config/functions.php";
 require_once "config/config.php";
 
-
-
-
 // Verifica si el usuario está conectado
 if (!$user = is_user_logged_in()) {
     // Si el usuario no está conectado, redirige a la página de inicio de sesión
@@ -25,10 +22,12 @@ $carrito = $_SESSION['carrito'];
     <title>Carrito de Compras</title>  
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<body>
 
+<body>
     <header class="py-5" style="background-color: #ffcc50;">
         <div class="container px-1">
             <div class="text-center text-black">
@@ -86,27 +85,25 @@ $carrito = $_SESSION['carrito'];
                             </div>
                         </div>
 
+                    <?php else : ?>
+                        <p>El carrito está vacío.</p>
+                    <?php endif ?>
+                    <br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- <script>
-    $(document).ready(function() {
-        $("#btnpedido").click(function() {
-             // Realizar la solicitud al servidor
-            $.ajax({
-                    type: "POST",
-                    url: "carga_pedido.php", // Ruta a tu script PHP
-                    success: function(response) {
-                        // Manejar la respuesta del servidor si es necesario
-                        console.log(response);
-                        // Puedes redirigir a otra página si lo deseas
-                window.location.href = "index.php";
-            },
-            error: function(error) {
-                console.error("Error en la solicitud:", error);
-            }
-        });
-    });
-});
-</script> -->
+    <!-- Footer-->
+    <footer class="py-5" style="background-color: #ffcc50;">
+        <div class="container px-1">
+            <div class="text-center text-black">
+                <p>&copy;Todos los derechos reservados. Diseñado por <b>Arcurin Gustavo, Vega Claudio, Javier Torres , Machuca Nicolas, Luis Truyen</b></p> 
+            </div>
+        </div>
+    </footer>        
+</body>
 
 <script>
 $(document).ready(function() {
@@ -132,30 +129,4 @@ $(document).ready(function() {
     });
 });
 </script>
-
-
-
-
-
-                    <?php else : ?>
-                        <p>El carrito está vacío.</p>
-                    <?php endif ?>
-                    <br><br>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer-->
-        <footer class="py-5" style="background-color: #ffcc50;">
-            <div class="container px-1">
-                <div class="text-center text-black">
-                    <p>&copy;Todos los derechos reservados. Diseñado por <b>Arcurin Gustavo, Vega Claudio, Javier Torres , Machuca Nicolas, Luis Truyen</b></p> 
-                </div>
-            </div>
-        </footer>
-
-        <!-- Bootstrap JS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
 </html>
