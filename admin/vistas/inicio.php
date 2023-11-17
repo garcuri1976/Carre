@@ -29,9 +29,9 @@ date_default_timezone_set("America/Lima");
                     
                         <div class="row">
                                 <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
-                                        <div class="card-box noradius noborder bg-default">
+                                        <div class="card-box noradius noborder bg-success">
                                                 <i class="fa fa-shopping-cart  float-right text-white"></i>
-                                                <h5 class="text-white text-uppercase m-b-20">Ventas del Dia</h5>
+                                                <h5 class="text-white text-uppercase m-b-20">Cantidad de TK del Dia</h5>
                                                 <h4 class="m-b-20 text-white counter">
                                                                     <?php
                                                                         require_once '../clases/Reporte.php';
@@ -41,15 +41,20 @@ date_default_timezone_set("America/Lima");
                                                                         echo $r1;
                                                                     ?>
                                                 </h4>
-                                                <span class="text-white"><br><br></span>
+                                                <span class="text-white"><br></span>
                                         </div>
                                 </div>
 
-                                <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+                                <!-- <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
                                         <div class="card-box noradius noborder bg-warning">
-                                                <i class="fa fa-money float-right text-white"></i>
-                                                <h5 class="text-white text-uppercase m-b-20">Dinero del Dia</h5>
-                                                <h4 class="m-b-20 text-white counter">S/ 
+                                                <i class="fa fa-money float-right text-white"></i> -->
+                                                
+                                
+                                <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+                                        <div class="card-box noradius noborder bg-success">
+                                                <i class="fa fa fa-money  float-right text-white"></i>
+                                                <h5 class="text-white text-uppercase m-b-20">Venta del Dia</h5>
+                                                <h4 class="m-b-20 text-white counter">$
                                                                     <?php
                                                                         require_once '../clases/Reporte.php';
                                                                         require_once '../clases/Conexion.php';
@@ -66,14 +71,15 @@ date_default_timezone_set("America/Lima");
                                                                         
                                                                     ?>
                                                 </h4>
-                                                <span class="text-white"><br><br></span>
+                                                <span class="text-white"><br></span>
                                         </div>
                                 </div>
 
                                 <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
-                                        <div class="card-box noradius noborder bg-info">
-                                                <i class="fa fa-product-hunt  float-right text-white"></i>
-                                                <h5 class="text-white text-uppercase m-b-20">Productos Vendidos</h5>
+                                        <div class="card-box noradius noborder bg-success
+                                        ">
+                                                <i class="fa fa-gift  float-right text-white"></i>
+                                                <h5 class="text-white text-uppercase m-b-20">Unidades Vendidos</h5>
                                                 <h4 class="m-b-20 text-white counter">
                                                                     <?php
                                                                         require_once '../clases/Reporte.php';
@@ -117,15 +123,14 @@ date_default_timezone_set("America/Lima");
                         
                         <div class="row">
                         
-                                <H4>Tabla de productos con stock menor a 10 unidades</H4>
+                                <H4>Tabla de productos con stock menor a 40 unidades</H4>
 <table id="dtventas" class="table table-bordered table-hover table-condensed">
                     <thead>
                         <tr>
                             <td>#</td>
                             <td>Producto</td>
                             <td>Stock</td>
-                            <!--<td>Fecha Sepelio</td>-->
-                            <td style="width:15px"></td>
+                        
                         </tr>
                     </thead>
                     <tbody>

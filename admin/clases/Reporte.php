@@ -6,7 +6,7 @@ class Reporte{
             $c = new Conexion();
 			$conexion = $c->conectar();
             $fecha = date('y-m-d');
-            $sql = "SELECT COUNT(*) FROM ventas where fecha='$fecha'";
+            $sql = "SELECT COUNT(*) FROM pedidos where fecha_pedido='$fecha'";
             $result= mysqli_query($conexion,$sql);
             $re=mysqli_fetch_row($result)[0];
 
@@ -16,7 +16,7 @@ class Reporte{
             $c = new Conexion();
 			$conexion = $c->conectar();
             $fecha = date('y-m-d');
-            $sql = "SELECT SUM(total) FROM ventas where fecha='$fecha'";
+            $sql = "SELECT SUM(total) FROM pedidos where fecha_pedido='$fecha'";
             $result= mysqli_query($conexion,$sql);
             $re=mysqli_fetch_row($result)[0];
 
@@ -26,7 +26,7 @@ class Reporte{
             $c = new Conexion();
 			$conexion = $c->conectar();
             $fecha = date('y-m-d');
-            $sql = "SELECT count(id_producto) FROM productos where stock < 10";
+            $sql = "SELECT count(id_producto) FROM productos where stock < 40";
             $result= mysqli_query($conexion,$sql);
             $re=mysqli_fetch_row($result)[0];
 
@@ -36,9 +36,9 @@ class Reporte{
             $c = new Conexion();
 			$conexion = $c->conectar();
             $fecha = date('y-m-d');
-            $sql = "SELECT SUM(de.cantidad) FROM detalle_ventas AS de
-            INNER JOIN ventas AS ve ON ve.id_venta=de.id_ventas
-            WHERE ve.fecha = '$fecha'";
+            $sql = "SELECT SUM(cantidad) FROM pedido_detalle AS pede
+            INNER JOIN pedidos AS pe ON pe.id_pedido=pede.id_pedido
+            WHERE pe.fecha_pedido = '$fecha'";
             $result= mysqli_query($conexion,$sql);
             $re=mysqli_fetch_row($result)[0];
 
@@ -49,7 +49,7 @@ class Reporte{
             $c = new Conexion();
 			$conexion = $c->conectar();
             $fecha = date('y-m-d');
-            $sql = "SELECT id_producto,nombre,stock from productos where stock < 10 order by stock asc";
+            $sql = "SELECT id_producto,descripcion,stock from productos where stock < 40 order by stock asc";
             $result= mysqli_query($conexion,$sql);
             return $result ;
     }

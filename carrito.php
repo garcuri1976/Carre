@@ -3,6 +3,9 @@ require_once "config/conexion.php";
 require_once "config/functions.php";
 require_once "config/config.php";
 
+
+
+
 // Verifica si el usuario está conectado
 if (!$user = is_user_logged_in()) {
     // Si el usuario no está conectado, redirige a la página de inicio de sesión
@@ -23,6 +26,7 @@ $carrito = $_SESSION['carrito'];
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <body>
 
     <header class="py-5" style="background-color: #ffcc50;">
@@ -78,8 +82,60 @@ $carrito = $_SESSION['carrito'];
                             <div class="d-grid gap-2">
                                 <div id="paypal-button-container"></div>
                                 <button class="btn btn-warning" type="button" id="btnpedido">Solicitar Pedido</button>
+                                
                             </div>
                         </div>
+
+
+<!-- <script>
+    $(document).ready(function() {
+        $("#btnpedido").click(function() {
+             // Realizar la solicitud al servidor
+            $.ajax({
+                    type: "POST",
+                    url: "carga_pedido.php", // Ruta a tu script PHP
+                    success: function(response) {
+                        // Manejar la respuesta del servidor si es necesario
+                        console.log(response);
+                        // Puedes redirigir a otra página si lo deseas
+                window.location.href = "index.php";
+            },
+            error: function(error) {
+                console.error("Error en la solicitud:", error);
+            }
+        });
+    });
+});
+</script> -->
+
+<script>
+$(document).ready(function() {
+    $("#btnpedido").click(function() {
+        $.ajax({
+            type: "POST",
+            url: "carga_pedido.php",
+            dataType: "json",
+            success: function(response) {
+                console.log(response);
+                if (response.success) {
+                    alert("Pedido generado con éxito: " + response.message);
+                    // Puedes redirigir a otra página si lo deseas
+                    window.location.href = "index.php";
+                } else {
+                    alert("Error: " + response.message);
+                }
+            },
+            error: function(error) {
+                console.error("Error en la solicitud:", error);
+            }
+        });
+    });
+});
+</script>
+
+
+
+
 
                     <?php else : ?>
                         <p>El carrito está vacío.</p>
